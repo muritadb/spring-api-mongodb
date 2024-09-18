@@ -1,12 +1,15 @@
 package com.murita.spring_mongo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.murita.spring_mongo.dto.AuthorDTO;
+import com.murita.spring_mongo.dto.CommentDTO;
 
 @Document
 public class Post implements Serializable {
@@ -18,6 +21,16 @@ public class Post implements Serializable {
   private String title;
   private String body;
   private AuthorDTO author;
+
+  private List<CommentDTO> commnets = new ArrayList<>();
+
+  public List<CommentDTO> getCommnets() {
+    return commnets;
+  }
+
+  public void setCommnets(List<CommentDTO> commnets) {
+    this.commnets = commnets;
+  }
 
   public Post() {
   }

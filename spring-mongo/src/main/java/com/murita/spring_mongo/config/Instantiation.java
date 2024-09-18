@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import com.murita.spring_mongo.domain.Post;
 import com.murita.spring_mongo.domain.User;
 import com.murita.spring_mongo.dto.AuthorDTO;
+import com.murita.spring_mongo.dto.CommentDTO;
 import com.murita.spring_mongo.repository.PostRepository;
 import com.murita.spring_mongo.repository.UserRepository;
 
@@ -40,6 +41,13 @@ public class Instantiation implements CommandLineRunner {
 
     Post post1 = new Post(null, sdf.parse("21/03/2018"), "partiu viagem", "vou viajar ...", new AuthorDTO(maria));
     Post post2 = new Post(null, sdf.parse("23/03/2018"), "bom dia", "acordei feliz", new AuthorDTO(maria));
+
+    CommentDTO c1 = new CommentDTO("Boa viagem mano", sdf.parse("21/03/2018"), new AuthorDTO(alex));
+    CommentDTO c2 = new CommentDTO("aproveite", sdf.parse("22/03/2018"), new AuthorDTO(bob));
+    CommentDTO c3 = new CommentDTO("tenha um otimo dia", sdf.parse("23/03/2018"), new AuthorDTO(alex));
+
+    post1.getCommnets().addAll(Arrays.asList(c1, c2));
+    post2.getCommnets().addAll(Arrays.asList(c3));
 
     postRepository.saveAll(Arrays.asList(post1, post2));
 
